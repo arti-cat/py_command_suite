@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Release artifacts
+release-artifacts/
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+# Logs
+*.log
+logs/
+
+# Node.js (if used later)
+node_modules/
+npm-debug.log*
+
+# Python (if used later)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+
+# Local environment
+.env
+.env.local
+
+# Backup files
+*.bak
+*.backup
