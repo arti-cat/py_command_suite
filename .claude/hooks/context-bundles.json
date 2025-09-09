@@ -1,0 +1,58 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Read|Grep",
+        "hooks": [
+          {
+            "type": "append_file",
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
+            "template": "- READ {{tool_input.file_path | default:tool_input.path | truncate:80}}"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "append_file", 
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
+            "template": "- WRITE {{tool_input.file_path | truncate:80}}"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "append_file",
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md", 
+            "template": "- BASH {{tool_input.command | truncate:80}}"
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "append_file",
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
+            "template": "- TASK {{tool_input.description | truncate:60}} ({{tool_input.subagent_type}})"
+          }
+        ]
+      }
+    ],
+    "PostPrompt": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "append_file",
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
+            "template": "\n## Session: ${TIMESTAMP}\n**Prompt:** {{user_prompt | truncate:150}}\n\n### Operations:"
+          }
+        ]
+      }
+    ]
+  }
+}

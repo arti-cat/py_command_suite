@@ -1,0 +1,86 @@
+{
+  "hooks": {
+    "PreStartup": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "fail_if_file_exists",
+            "path": "mcp.json",
+            "message": "Avoid default MCP preload. Use explicit per-task MCP config with 'claude --mcp config.json'."
+          },
+          {
+            "type": "fail_if_large_file",
+            "path": ".claude/claude.md",
+            "max_tokens_estimate": 1200,
+            "message": "claude.md too large. Prefer /prime commands for context setup. Keep ≤350 tokens."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "deny_if_command_matches",
+            "patterns": [
+              "curl .*",
+              "wget .*", 
+              "rm -rf .*",
+              "sudo .*",
+              "docker .*",
+              "apt .*",
+              "brew .*",
+              "pip install .*",
+              "pip3 install .*",
+              "conda .*",
+              "npm install .*",
+              "yarn add .*"
+            ],
+            "message": "Disallowed command. Use UV for Python operations: 'uv add', 'uv run', 'uvx tool'."
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "deny_if_path_not_in",
+            "allowlist": [
+              "src/", 
+              "tests/", 
+              "README.md", 
+              "pyproject.toml", 
+              "CHANGELOG.md",
+              ".claude/",
+              "agents/",
+              "AI_DOCS/"
+            ],
+            "message": "Stay focused: read only whitelisted paths. Use /prime for project context."
+          },
+          {
+            "type": "deny_if_file_too_large",
+            "max_kb": 256,
+            "message": "Large file detected. Extract only necessary sections or delegate to subagent."
+          }
+        ]
+      }
+    ],
+    "PostWrite": [
+      {
+        "matcher": "\\.py$",
+        "hooks": [
+          { 
+            "type": "bash", 
+            "command": "uvx ruff format ${FILE}" 
+          },
+          { 
+            "type": "bash", 
+            "command": "python -c \"import py_compile; py_compile.compile('${FILE}', doraise=True)\"" 
+          }
+        ]
+      }
+    ]
+  }
+}
