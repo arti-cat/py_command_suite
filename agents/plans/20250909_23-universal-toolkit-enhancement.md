@@ -29,9 +29,9 @@ Transform the Python Command Suite into the definitive universal Python developm
 ### Phase 1: Core Command Extensions (Priority: Critical)
 
 #### 1.1 Security Suite
+- `/secrets-scan` - Secrets detection with detect-secrets/truffleHog (critical first)
 - `/security` - Comprehensive security analysis with bandit, safety, semgrep
 - `/deps-audit` - Dependency vulnerability scanning with safety/pip-audit
-- `/secrets-scan` - Secrets detection with detect-secrets/truffleHog
 - `/license-check` - License compatibility analysis
 
 #### 1.2 Performance Tooling
@@ -41,19 +41,23 @@ Transform the Python Command Suite into the definitive universal Python developm
 - `/load-test` - Basic load testing setup with locust integration
 
 #### 1.3 Framework Commands
-- `/supabase-setup` - Complete Supabase project initialization and best practices
-- `/postgres-setup` - Database migration management (Django, Alembic, custom)
-- `/openai-setup` - OpenAI 'responses API' project scaffolding with async patterns
+- `/framework-detect` - Intelligent framework detection and optimization (foundational)
+- `/project-init` - Universal Python project scaffolding (pyproject.toml, src/, CI basics)
+- `/supabase-init` - Complete Supabase project initialization and best practices
+- `/postgres-init` - PostgreSQL setup and migration management
+- `/openai-init` - OpenAI API project scaffolding with async patterns
 - `/fastapi-init` - FastAPI project scaffolding with async patterns
-- `/flask-scaffold` - Flask application factory setup with blueprints
-- `/framework-detect` - Intelligent framework detection and optimization
+- `/flask-init` - Flask application factory setup with blueprints
 
 #### 1.4 Database Management
-- `/supabase-migrate` - Database migration management (Django, Alembic, custom)
-- `/postgres-migrate` - Database migration management (Django, Alembic, custom)
+- `/db-migrate` - Universal database migration management (Django, Alembic, custom)
 - `/db-setup` - Database initialization and connection testing
 - `/db-reset` - Safe database reset with backup creation
 - `/db-backup` - Automated database backup with compression
+
+#### 1.5 Documentation System
+- `/glossary-gen` - Auto-generate AI_DOCS/glossary.md from command usage patterns
+- `/docs-gen` - Comprehensive project documentation generation
 
 ### Phase 2: Advanced Agent Architecture (Priority: High)
 
@@ -84,7 +88,11 @@ Transform the Python Command Suite into the definitive universal Python developm
 - `/update-deps` - Intelligent dependency updates with conflict resolution
 - `/cleanup` - Code cleanup and technical debt identification
 
-#### 3.2 AI/ML Workflow Support
+#### 3.2 AI/ML Workflow Support  
+- `/ai-workflow` - Common LLM development patterns and async best practices
+- `/openai-test` - OpenAI API testing with mock responses and rate limiting
+- `/ai-cost` - OpenAI usage tracking and cost optimization analysis
+- `/prompt-optimize` - Prompt engineering and testing framework
 - `/jupyter-setup` - Jupyter Lab setup with extensions and kernels
 - `/data-pipeline` - Data processing pipeline scaffolding
 - `/model-train` - ML model training setup with MLflow integration
