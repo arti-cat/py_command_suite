@@ -3,6 +3,9 @@
 .AppleDouble
 .LSOverride
 
+
+/.claude_example
+
 # Editor directories and files
 .idea/
 .vscode/
