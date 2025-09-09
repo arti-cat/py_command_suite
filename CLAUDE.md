@@ -9,15 +9,7 @@ We currently have a `/.claude_example` directory full of incredible agents, comm
 * Every tool MUST follow documentation and best practices set out by Boris and Anthropic's claude code team. ([Anthropic Claude Code docs](https://context7.com/anthropics/claude-code))
 * Tools primary focus should be Python development and code generation, setup or configuration steps, or library/API documentation. 
 * UV Astral package manager should be used to install and update packages - `uv add`, and for running uv commands - `uv run`.
-
-## Priority
-
-* Create a priming command that primes claude code and sub agents with py_command_suite project specific information. This should differ from a `CLAUDE.md` file, the distinction is that main agents and sub agents have different prompting techniques, one using a user prompt and one a system prompt, powerful for delegation but lacking in context. To fix this, the priming agent should provide specific context for subagents - priming them for their tasks and duties. 
-* Create a command that creates new commands, agents, hooks, etc.
-* Create a command that updates existing commands, agents, hooks, etc.
-* Create a command that removes existing commands, agents, hooks, etc.
-* Create a command that lists all commands, agents, hooks, etc.
-* Create a command that shows details of a specific command, agent, hook, etc.
+* pyhton installed as 'python3' 
 
 ## Current Stage
 

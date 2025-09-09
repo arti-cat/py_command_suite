@@ -1,413 +1,298 @@
 # Python Command Suite for Claude Code
 
-A comprehensive collection of Python development commands for Claude Code, featuring modern tooling integration with UV package manager, Context7 documentation intelligence, and framework-aware development workflows.
+**Context Engineering for Python Development with R&D Framework Implementation**
+
+A comprehensive suite implementing advanced context engineering principles from the IDD transcript, featuring modern Python tooling with UV package manager integration, specialized agent delegation, and session continuity.
 
 ## 🎯 Overview
 
-The Python Command Suite provides a complete development workflow for Python projects, from environment setup through testing and deployment. Built specifically for Claude Code, it addresses the critical agent context gap by providing rich context bundles for sub-agent interactions while leveraging modern Python tooling.
+The Python Command Suite provides a context-engineered development workflow following the **R&D Framework** (Reduce & Delegate) for optimal Claude Code performance. It maintains minimal context windows while enabling powerful multi-agent delegation and session continuity for complex Python development tasks.
 
 ### Key Features
 
-- **🚀 UV Package Manager Excellence**: Fast, modern dependency management with intelligent resolution
-- **🧠 Context7 Intelligence**: Real-time documentation research and best practices integration  
-- **🔧 Framework Awareness**: Deep support for Django, FastAPI, Flask, and Data Science workflows
-- **🤖 Agent Context Bundling**: Solves the "agents have ZERO project context" problem with rich context sharing
-- **⚡ Modern Python Standards**: Python 3.11+ features, async patterns, comprehensive type checking
-- **🔄 Complete Workflow**: Environment → Dependencies → Quality → Testing integration
+- **🧠 R&D Context Engineering**: 90%+ free context startup, intelligent delegation, session replay
+- **🚀 UV-Native Workflow**: Modern package management with `uv venv`, `uv sync`, `uvx` tooling
+- **🤖 Multi-Agent Delegation**: Specialized subagents and background primary agents
+- **📦 Session Continuity**: Context bundles enable task resumption across sessions
+- **⚡ Quality Automation**: Integrated ruff, mypy, pytest with automatic hooks
+- **🔧 Framework Intelligence**: Django, FastAPI, Flask detection and optimization
 
 ## 🚀 Quick Start
 
 ```bash
-# 1. Analyze and prime your Python project
-/project-prime
+# 1. Prime your Python project context (≤800 tokens)
+/prime base
 
-# 2. Set up development environment with UV
-/py:setup-environment my-project --framework fastapi
+# 2. Set up UV development environment  
+/uv-setup
 
-# 3. Add dependencies with intelligent research
-/py:add-dependency fastapi uvicorn pydantic
+# 3. Quality assurance pipeline
+/lint && /types && /test
 
-# 4. Complete quality workflow
-/py:format-code
-/py:type-check  
-/py:run-tests --coverage
+# 4. For complex tasks - delegate to background agent
+/background "Generate comprehensive API documentation with examples"
 ```
 
-## 📋 Commands Overview
+## 📋 Context Engineering Commands
 
-### 🛠️ Command Management System
+### 🧠 Context Priming System
 
-| Command | Purpose | Key Features |
-|---------|---------|-------------|
-| [`py:create-command`](#py-create-command) | Create new Python commands | Templates, UV integration, Context7 patterns |
-| [`py:update-command`](#py-update-command) | Safely modify existing commands | Backup system, version control, rollback |
-| [`py:remove-command`](#py-remove-command) | Archive/remove commands | Safe removal, backup, restoration |
-| [`py:list-commands`](#py-list-commands) | Browse available commands | Search, filtering, categorization |
-| [`py:show-command`](#py-show-command) | Display command details | Usage examples, integration info |
+| Command | Purpose | Context Impact |
+|---------|---------|----------------|
+| [`/prime`](#prime) | Python project context setup | ≤800 tokens total |
+| [`/prime-bug`](#prime-bug) | Bug hunting focused context | ≤500 tokens total |
 
-### 🔍 Project Analysis
+### 🔧 Development Workflow
 
-| Command | Purpose | Key Features |
-|---------|---------|-------------|
-| [`/project-prime`](#project-prime) | Comprehensive project analysis | Framework detection, agent context bundles, tooling analysis |
+| Command | Purpose | UV Integration |
+|---------|---------|----------------|
+| [`/uv-setup`](#uv-setup) | Idempotent environment setup | `uv venv`, `uv sync`, `uv lock` |
+| [`/test`](#test) | Fast, deterministic testing | `uv run pytest` with coverage |
+| [`/lint`](#lint) | Code quality with ruff | `uvx ruff check --fix` |
+| [`/types`](#types) | Strict type checking | `uvx mypy --strict` |
 
-### 🐍 Core Python Development
+### 🤖 Agent Delegation System
 
-| Command | Purpose | Key Features |
-|---------|---------|-------------|
-| [`py:setup-environment`](#py-setup-environment) | UV-based environment setup | Virtual environments, framework setup, quality tools |
-| [`py:add-dependency`](#py-add-dependency) | Smart dependency management | Context7 research, version optimization, conflict resolution |
-| [`py:format-code`](#py-format-code) | Modern code formatting | Ruff/Black integration, import organization, pre-commit |
-| [`py:type-check`](#py-type-check) | Comprehensive type checking | Mypy integration, modern typing patterns, IDE support |
-| [`py:run-tests`](#py-run-tests) | Advanced testing framework | Pytest, coverage reporting, parallel execution |
+| Command/Agent | Purpose | Delegation Strategy |
+|---------------|---------|-------------------|
+| [`planner`](#planner-agent) | Task planning with subagent briefs | Creates focused delegation plans |
+| [`implementer`](#implementer-agent) | Small code changes with testing | ≤200 lines per file |
+| [`/loadbundle`](#loadbundle) | Session context replay | Deduplicated operation history |
+| [`/background`](#background) | Primary multi-agent delegation | Independent Claude Code instances |
+
+### 🛡️ Context Engineering Enforcement
+
+| System | Purpose | R&D Implementation |
+|--------|---------|-------------------|
+| **Guardrails** | Block wasteful operations | No default MCP, UV-only Python ops |
+| **Context Bundles** | Session tracking & replay | Automatic Read/Write/Bash logging |
+| **Minimal Memory** | Essential context only | 350 tokens vs 20K+ bloat |
 
 ## 📖 Detailed Command Documentation
 
-### Command Management System
+### Context Priming Commands
 
-#### `py:create-command`
-**Create new Python development commands using templates and best practices**
+#### `/prime [area]`
+**Context-prime agent for Python project work with minimal token usage**
 
 ```bash
-# Create basic development command
-/py:create-command setup-ml-environment development
+# General Python development context
+/prime base        
 
-# Create framework-specific command  
-/py:create-command django-add-api framework
+# Feature development focus
+/prime feature     
 
-# Create testing command with coverage
-/py:create-command pytest-benchmark testing
+# Bug hunting context
+/prime bug
+
+# Documentation focus  
+/prime docs
 ```
 
 **Features:**
-- Template-based command generation for different categories
-- UV package manager integration built-in
-- Context7 documentation patterns included
-- Framework-specific templates (Django, FastAPI, Flask)
-- Automatic kebab-case naming and Claude Code standards compliance
+- **Token Efficient**: ≤800 tokens total context addition
+- **Framework Detection**: Automatic Django, FastAPI, Flask identification
+- **Risk Assessment**: I/O operations, secrets, large files analysis
+- **Delegation Suggestions**: Recommends specialized agents for heavy work
 
 ---
 
-#### `py:update-command`
-**Safely update existing commands with backup creation and version control**
+#### `/prime-bug`
+**Focused bug hunting context with minimal reads**
 
 ```bash
-# Update command with UV integration
-/py:update-command setup-environment "Add UV package manager support"
-
-# Enhance with Context7 integration  
-/py:update-command django-migrate "Add Context7 Django documentation integration"
-
-# Add modern Python features
-/py:update-command format-code "Add ruff formatter integration"
+# Target bug investigation context
+/prime-bug
 ```
 
 **Features:**
-- Automatic backup creation with timestamps
-- Safe modification with rollback capabilities
-- Python-specific enhancement suggestions (UV, Context7, modern tooling)
-- Version control integration and change tracking
-- Validation and testing of modifications
+- **Ultra Focused**: ≤500 tokens context addition
+- **Failure Analysis**: Error traces, failing tests, target modules only
+- **Hypothesis Generation**: Root cause theories and fix strategies
+- **Minimal Reproduction**: Single-file test creation
+
+### Development Workflow Commands
+
+#### `/uv-setup`
+**Idempotent Python environment setup with UV package manager**
+
+```bash
+# Complete environment setup
+/uv-setup
+```
+
+**Features:**
+- **UV-Native**: `uv venv`, `uv lock`, `uv sync` workflow
+- **Idempotent Operations**: Safe to run multiple times
+- **Environment Validation**: Python version and dependency verification
+- **Comprehensive Reporting**: Setup status written to `agents/reports/`
 
 ---
 
-#### `py:remove-command`
-**Archive or remove commands with comprehensive backup and rollback capabilities**
+#### `/test`
+**Fast, deterministic testing with coverage analysis**
 
 ```bash
-# Archive command safely (recommended)
-/py:remove-command old-deployment-script
-
-# Disable temporarily for testing
-/py:remove-command experimental-feature --disable
-
-# Permanent removal with confirmation
-/py:remove-command obsolete-command --delete --confirm
+# Run optimized test suite
+/test
 ```
 
 **Features:**
-- Multiple removal modes: archive, disable, delete
-- Comprehensive backup system with dependency tracking
-- Dependency analysis and impact assessment
-- Easy restoration capabilities
-- Change logging and modification history
+- **Fast Feedback**: `--maxfail=1` stops on first failure
+- **Deterministic**: `--random-order-seed=0` for reproducible results  
+- **Coverage Integration**: Built-in coverage reporting
+- **Failure Analysis**: Detailed failure reports in `agents/reports/`
 
 ---
 
-#### `py:list-commands`
-**Browse, search, and filter available Python development commands**
+#### `/lint`
+**Code quality enforcement with Ruff integration**
 
 ```bash
-# List all commands
-/py:list-commands
-
-# Search by functionality
-/py:list-commands --search "django"
-
-# Filter by features
-/py:list-commands --uv-integrated --context7-enabled
-
-# Different output formats
-/py:list-commands --format table
-/py:list-commands --format detailed
+# Comprehensive linting and formatting
+/lint
 ```
 
 **Features:**
-- Comprehensive command discovery with search and filtering
-- Category organization (development, testing, framework, deployment)
-- Multiple output formats (list, table, detailed, JSON)
-- Usage statistics and popularity metrics
-- Integration feature highlighting (UV, Context7, framework support)
+- **Modern Tooling**: Ruff for 10x faster linting than traditional tools
+- **Auto-fix**: `uvx ruff check --fix` applies safe corrections
+- **Formatting**: `uvx ruff format` for consistent code style
+- **Configuration**: Integration with `pyproject.toml` settings
 
 ---
 
-#### `py:show-command`
-**Display comprehensive details about specific commands with management integration**
+#### `/types`
+**Strict type checking with MyPy**
 
 ```bash
-# Show command overview
-/py:show-command setup-environment
-
-# Show with detailed analysis
-/py:show-command fastapi-setup --detailed --integrations
-
-# Show with management options
-/py:show-command legacy-tool --suggest-updates --related
+# Comprehensive type analysis
+/types
 ```
 
 **Features:**
-- Comprehensive command information display
-- Usage examples and integration details
-- Performance metrics and analytics
-- Quick access to editing and management functions
-- Framework compatibility and dependency information
+- **Strict Mode**: `uvx mypy --strict` for maximum type safety
+- **Framework Support**: Django-stubs, async patterns, modern typing
+- **Incremental**: Caching for faster subsequent runs
+- **Error Analysis**: Detailed type error reporting and suggestions
 
-### Project Analysis
+### Agent Delegation System
 
-#### `/project-prime`
-**Comprehensive Python project analysis and agent context preparation**
+#### `/loadbundle <path>`
+**Load prior context bundle to replay session state**
 
 ```bash
-# Complete project analysis
-/project-prime
-
-# Framework-specific analysis
-/project-prime --focus django --async-patterns
-
-# Sub-agent context preparation
-/project-prime --prepare-agent-context python-pro
+# Resume previous development session
+/loadbundle agents/context-bundles/session-2024-09-09-14-abc123.md
 ```
 
 **Features:**
-- **Deep Framework Detection**: Django, FastAPI, Flask, Data Science project identification
-- **UV Integration Analysis**: Package manager usage and optimization opportunities  
-- **Context7 Strategic Research**: Library documentation and best practices fetching
-- **Agent Context Bundling**: Rich context preparation for sub-agent interactions
-- **Modern Tooling Detection**: Ruff, mypy, pytest, async patterns identification
-- **Architecture Analysis**: Code organization, type annotation coverage, testing strategies
-
-### Core Python Development Tools
-
-#### `py:setup-environment`
-**Comprehensive Python development environment setup with UV package manager**
-
-```bash
-# Basic environment setup
-/py:setup-environment my-project
-
-# Framework-specific setup
-/py:setup-environment blog-app --framework django --database postgresql
-/py:setup-environment api-service --framework fastapi --async
-/py:setup-environment analysis --framework datascience --jupyter
-
-# Advanced configuration
-/py:setup-environment workspace --monorepo --python 3.11
-```
-
-**Features:**
-- **UV-First Approach**: Modern, fast package management with dependency resolution
-- **Framework Intelligence**: Django, FastAPI, Flask, Data Science optimized setups
-- **Virtual Environment Management**: Isolated development environments
-- **Quality Tooling Setup**: Black, ruff, mypy, pytest integration
-- **Context7 Integration**: Real-time framework documentation and best practices
+- **Session Continuity**: Resume complex tasks across context limits
+- **Operation Deduplication**: Smart filtering of redundant operations
+- **Context Reconstruction**: ≤1000 tokens for previous session state
+- **Continuation Planning**: Generates ≤10 step plan for next actions
 
 ---
 
-#### `py:add-dependency`
-**Smart dependency management with Context7 research and version optimization**
+#### `/background <purpose>`
+**Launch independent Claude Code instance for heavy tasks**
 
 ```bash
-# Add production dependencies
-/py:add-dependency fastapi uvicorn pydantic
-
-# Add development dependencies
-/py:add-dependency --dev pytest black ruff mypy
-
-# Framework-specific additions
-/py:add-dependency django djangorestframework --framework django
-/py:add-dependency pandas numpy matplotlib --framework datascience
-
-# Version-constrained installation
-/py:add-dependency "django>=4.2,<5.0" --update-existing
+# Delegate complex analysis to background agent
+/background "Generate comprehensive API documentation with examples"
 ```
 
 **Features:**
-- **Context7 Intelligence**: Real-time package research and best practices
-- **UV Integration**: Fast dependency resolution with lock file management
-- **Security Scanning**: Vulnerability checking and security best practices
-- **Framework Awareness**: Django, FastAPI, Flask optimized package suggestions
-- **Conflict Resolution**: Smart dependency conflict detection and resolution
+- **Context Isolation**: Heavy work doesn't affect main context window
+- **Progress Reporting**: Real-time updates to `agents/background/<id>/report.md`
+- **Independent Processing**: Can spawn its own subagents
+- **Parallel Execution**: Multiple background tasks simultaneously
+
+### Specialized Agents
+
+#### `planner` Agent
+**Task planning with subagent delegation briefs**
+
+```bash
+# Create focused implementation plan
+planner
+```
+
+**Features:**
+- **Minimal Plans**: ≤500 token focused plans with clear steps
+- **Subagent Briefs**: Creates delegation instructions for heavy work
+- **Risk Assessment**: Identifies high/medium/low risk areas
+- **Rollback Strategies**: Plans for safe implementation reversal
 
 ---
 
-#### `py:format-code`
-**Modern Python code formatting with ruff and black integration**
+#### `implementer` Agent  
+**Code implementation with comprehensive testing**
 
 ```bash
-# Format current directory
-/py:format-code
-
-# Format with import organization
-/py:format-code --organize-imports
-
-# Set up formatting for project
-/py:format-code --setup --tool ruff --framework django
-
-# Check formatting without changes
-/py:format-code --check --diff
+# Execute code changes with testing
+implementer
 ```
 
 **Features:**
-- **Modern Tooling**: Ruff formatter for speed, Black compatibility mode
-- **Import Organization**: Smart import sorting and cleanup
-- **Framework Configurations**: Django, FastAPI, Flask specific formatting rules
-- **Pre-commit Integration**: Automated formatting in git workflows
-- **IDE Integration**: VS Code, PyCharm configuration support
-
----
-
-#### `py:type-check`
-**Comprehensive Python type checking with mypy and modern typing patterns**
-
-```bash
-# Basic type checking
-/py:type-check
-
-# Strict type checking with coverage
-/py:type-check --strict --coverage-report
-
-# Framework-specific setup
-/py:type-check --setup --framework fastapi
-/py:type-check --setup --framework django
-
-# Performance analysis
-/py:type-check --profile --show-stats
-```
-
-**Features:**
-- **Mypy Integration**: Comprehensive static type analysis
-- **Modern Typing**: Python 3.10+ union operators, 3.11+ Self type
-- **Framework Support**: Django-stubs, Pydantic integration, async typing
-- **Performance Optimization**: Incremental checking, caching, parallel processing
-- **IDE Integration**: Real-time type checking feedback
-
----
-
-#### `py:run-tests`
-**Advanced Python testing with pytest, coverage, and framework integration**
-
-```bash
-# Run all tests with coverage
-/py:run-tests --coverage
-
-# Framework-specific testing
-/py:run-tests --framework django --reuse-db
-/py:run-tests --framework fastapi --async
-
-# Performance and parallel execution
-/py:run-tests --parallel --profile --show-slowest
-
-# Selective test execution
-/py:run-tests -k "user and not integration" --fast-only
-```
-
-**Features:**
-- **Pytest Excellence**: Advanced test discovery, fixtures, parametrization
-- **Coverage Analysis**: Comprehensive coverage reporting (HTML, XML, terminal)
-- **Framework Testing**: Django TestCase, FastAPI TestClient, async testing
-- **Performance Optimization**: Parallel execution, test profiling, selective running
-- **Context7 Integration**: Testing pattern research and best practices
+- **Small Changes**: ≤200 lines per file modification
+- **Type Safety**: Complete type annotations for all new code
+- **Testing Integration**: Tests accompany all new functionality
+- **Quality Standards**: Follows Python best practices and patterns
 
 ## 🔄 Development Workflows
 
-### Complete Development Setup
+### Context-Engineered Development Setup
 ```bash
-# 1. Project analysis and context preparation
-/project-prime
+# 1. Prime project context (≤800 tokens)
+/prime base
 
-# 2. Environment setup with framework detection
-/py:setup-environment my-api --framework fastapi
+# 2. Environment setup
+/uv-setup
 
-# 3. Add core dependencies with research
-/py:add-dependency fastapi uvicorn pydantic sqlalchemy
-
-# 4. Add development tools
-/py:add-dependency --dev pytest httpx black ruff mypy
-
-# 5. Complete quality pipeline
-/py:format-code --setup
-/py:type-check --setup --framework fastapi
-/py:run-tests --setup-coverage
+# 3. Quality pipeline
+/lint && /types && /test
 ```
 
-### Quality Assurance Pipeline
+### Feature Development Workflow
 ```bash
-# Format code
-/py:format-code --organize-imports
+# 1. Feature-focused context
+/prime feature
 
-# Type checking
-/py:type-check --strict
+# 2. Planning with delegation
+planner
 
-# Run tests with coverage
-/py:run-tests --coverage --parallel
+# 3. Implementation  
+implementer
 
-# Combined quality check
-/py:format-code && /py:type-check && /py:run-tests --coverage
+# 4. Quality validation
+/lint && /types && /test
 ```
 
-### Framework-Specific Workflows
-
-#### Django Development
+### Complex Task Delegation
 ```bash
-/project-prime --focus django
-/py:setup-environment blog --framework django --database postgresql
-/py:add-dependency django djangorestframework django-extensions
-/py:add-dependency --dev pytest-django factory-boy django-debug-toolbar
-/py:format-code --framework django
-/py:type-check --setup --framework django
-/py:run-tests --framework django --reuse-db
+# 1. Delegate heavy analysis to background
+/background "Analyze codebase for performance bottlenecks and create optimization report"
+
+# 2. Monitor progress (optional)
+tail -f agents/background/*/report.md
+
+# 3. Load results when complete
+/loadbundle agents/context-bundles/session-*-background-*.md
 ```
 
-#### FastAPI Development  
+### Session Continuity Workflow
 ```bash
-/project-prime --focus fastapi --async-patterns
-/py:setup-environment api --framework fastapi --async
-/py:add-dependency fastapi uvicorn pydantic sqlalchemy
-/py:add-dependency --dev httpx pytest-asyncio
-/py:format-code --async-patterns
-/py:type-check --setup --framework fastapi
-/py:run-tests --framework fastapi --async
-```
+# 1. Work on complex task until context limit
+/prime feature
+planner
+# ... complex work continues until context fills
 
-#### Data Science Workflow
-```bash
-/project-prime --focus datascience
-/py:setup-environment analysis --framework datascience --jupyter
-/py:add-dependency pandas numpy matplotlib seaborn jupyter
-/py:add-dependency --dev pytest nbconvert
-/py:format-code --line-length 100 --ignore-notebooks
-/py:type-check --data-science-mode
-/py:run-tests --ignore-notebooks --data-validation
+# 2. Context bundle automatically created
+# agents/context-bundles/session-2024-09-09-14-abc123.md
+
+# 3. New session - resume work
+/loadbundle agents/context-bundles/session-2024-09-09-14-abc123.md
+# Continue where left off
 ```
 
 ## 🛠️ Installation and Setup
@@ -438,18 +323,14 @@ The Python Command Suite provides a complete development workflow for Python pro
 
 ### First-Time Setup
 ```bash
-# 1. Analyze your existing project
-/project-prime
+# 1. Prime your Python project context
+/prime base
 
-# 2. Set up your development environment
-/py:setup-environment . --detect-framework
+# 2. Set up development environment
+/uv-setup
 
-# 3. Install quality tools
-/py:add-dependency --dev pytest black ruff mypy
-
-# 4. Configure formatting and type checking
-/py:format-code --setup
-/py:type-check --setup
+# 3. Run quality pipeline to validate setup
+/lint && /types && /test
 ```
 
 ## 🔧 Configuration
@@ -480,16 +361,16 @@ Automatic detection and optimization for:
 ### Common Command Combinations
 ```bash
 # New project setup
-/project-prime && /py:setup-environment
-
-# Add and format
-/py:add-dependency requests && /py:format-code
+/prime base && /uv-setup
 
 # Quality pipeline
-/py:format-code && /py:type-check && /py:run-tests
+/lint && /types && /test
 
-# Command management
-/py:list-commands --search "django" && /py:show-command django-setup
+# Feature development  
+/prime feature && planner && implementer
+
+# Complex task delegation
+/background "task description" && /loadbundle path/to/results
 ```
 
 ### Troubleshooting
@@ -504,20 +385,18 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 #### Command Not Found
 ```bash
-# List available commands
-/py:list-commands
-
-# Show command details
-/py:show-command command-name
-
 # Verify Claude Code installation
 claude --version
+
+# Check .claude directory structure
+ls -la .claude/commands/ .claude/agents/
 ```
 
 #### Virtual Environment Issues
 ```bash
 # Reset environment
-/py:setup-environment . --reset-environment
+rm -rf .venv uv.lock
+/uv-setup
 
 # Manual UV environment setup
 uv venv
@@ -526,22 +405,18 @@ source .venv/bin/activate  # or .venv\Scripts\activate on Windows
 
 ## 🚀 Advanced Features
 
-### Agent Context Bundling
-The Python Command Suite solves the critical "agents have ZERO project context" problem by creating rich context bundles:
+### R&D Context Engineering
+The Python Command Suite implements advanced context engineering following the R&D (Reduce & Delegate) framework:
 
-```bash
-# Prepare context for sub-agent work
-/project-prime --prepare-agent-context python-pro
+**Reduce Context Pollution:**
+- Minimal memory files (350 tokens vs 20K+ potential bloat)
+- Focused context priming instead of large static files
+- Guardrails prevent wasteful operations
 
-# Context bundle format delivered to sub-agents:
-=== PYTHON PROJECT CONTEXT BUNDLE ===
-Framework: FastAPI v0.100.0 | Python: 3.11 | Package Manager: UV
-Key Libraries: fastapi, uvicorn, pydantic, sqlalchemy, pytest
-Testing: pytest | Quality: ruff, mypy configured  
-Architecture: async | Structure: src layout
-Current Task Context: [specific context for the current task]
-=== END CONTEXT BUNDLE ===
-```
+**Delegate Heavy Work:**
+- Specialized subagents for focused tasks
+- Background primary agents for complex analysis
+- Session continuity via context bundles
 
 ### Modern Python Integration
 - **Python 3.11+ Features**: Union operators (`str | int`), Self type, enhanced error messages
@@ -558,13 +433,7 @@ Current Task Context: [specific context for the current task]
 ## 🤝 Contributing
 
 ### Adding New Commands
-```bash
-# Create new command using the command creator
-/py:create-command your-command-name category
-
-# Update existing commands
-/py:update-command existing-command "Enhancement description"
-```
+New commands should be created by directly editing files in `.claude/commands/` following the established patterns and markdown format used by existing commands.
 
 ### Best Practices
 - Follow UV-first approach for all dependency management
@@ -579,4 +448,4 @@ MIT License - see LICENSE file for details.
 
 ---
 
-**The Python Command Suite transforms Python development in Claude Code with modern tooling, intelligent context sharing, and comprehensive workflow integration. Start with `/project-prime` to analyze your project and unlock the full potential of AI-assisted Python development.**
+**The Python Command Suite implements advanced context engineering for Python development in Claude Code. Start with `/prime base` to establish focused project context and experience the benefits of the R&D framework for scalable, efficient AI-assisted development.**
