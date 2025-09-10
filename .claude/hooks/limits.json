@@ -5,22 +5,12 @@
         "matcher": "Read",
         "hooks": [
           {
-            "type": "warn_if_path_not_in",
-            "allowlist": [
-              "src/", 
-              "tests/", 
-              "README.md", 
-              "pyproject.toml", 
-              "CHANGELOG.md",
-              ".claude/",
-              "docs/"
-            ],
-            "message": "R&D Framework reminder: Stay focused on core project files during context priming."
+            "type": "command",
+            "command": "file_path=$(echo '$1' | jq -r '.tool_input.file_path // \"\"'); if [ -n \"$file_path\" ]; then allowed_patterns=\"^(src/|tests/|README\\.md|pyproject\\.toml|CHANGELOG\\.md|\\.claude/|docs/)\"; if ! echo \"$file_path\" | grep -qE \"$allowed_patterns\"; then echo 'INFO: R&D Framework reminder - Stay focused on core project files during context priming. File: '$file_path >&2; fi; fi"
           },
           {
-            "type": "deny_if_file_too_large",
-            "max_kb": 256,
-            "message": "Large file detected. Extract only necessary sections to follow R&D Framework context discipline."
+            "type": "command",
+            "command": "file_path=$(echo '$1' | jq -r '.tool_input.file_path // \"\"'); if [ -n \"$file_path\" ] && [ -f \"$file_path\" ]; then size_kb=$(du -k \"$file_path\" | cut -f1); if [ $size_kb -gt 256 ]; then echo 'WARNING: Large file detected ('$size_kb'KB). Extract only necessary sections to follow R&D Framework context discipline.' >&2; fi; fi"
           }
         ]
       },
@@ -28,8 +18,8 @@
         "matcher": "WebFetch",
         "hooks": [
           {
-            "type": "suggest_delegation",
-            "message": "Consider delegating web scraping to doc-scraper agent to keep main context clean."
+            "type": "command",
+            "command": "echo 'INFO: Consider delegating web scraping to doc-scraper agent to keep main context clean.' >&2"
           }
         ]
       }

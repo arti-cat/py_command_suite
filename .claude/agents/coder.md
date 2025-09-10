@@ -1,11 +1,6 @@
 ---
 name: coder
 description: Implements code & tests using TDD where possible
-accepts: ["coding", "refactor", "migrate", "implement"]
-commands: ["read", "grep", "git", "bash", "write"]
-requires_context: ["inputs", "io_contract", "doc_snippets"]
-output_contracts: ["json.patch", "json.report"]
-context_lens: "@.claude/background/target-lens.md"
 ---
 
 # Coder Agent

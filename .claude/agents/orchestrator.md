@@ -1,14 +1,6 @@
 ---
 name: orchestrator
 description: R&D planner/delegator with strict meta-context discipline
-accepts: ["plan", "delegate", "scaffold"]
-commands: ["read", "grep", "http", "git", "bash", "write"]
-policies:
-  routing: "../policies/routing.json"
-  permissions: "../policies/permissions.json"
-  limits: "../policies/limits.json"
-output_contracts: ["json.plan", "json.report"]
-context_lens: "@.claude/background/creator-lens.md"
 ---
 
 # Orchestrator Agent

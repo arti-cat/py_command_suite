@@ -1,0 +1,28 @@
+{
+  "objective": "Implement CLI tool core functionality with UV project structure",
+  "inputs": ["Research findings", "JSON schema validation requirements"],
+  "constraints": ["UV package manager", "Single responsibility functions", "Type hints", "Docstrings"],
+  "doc_snippets": [
+    {
+      "tool": "uv",
+      "version": "latest",
+      "excerpt": "uv init --name json-validator --python 3.11"
+    },
+    {
+      "pattern": "cli_structure",
+      "excerpt": "main.py -> click commands, validate.py -> schema logic, __init__.py -> exports"
+    },
+    {
+      "pattern": "error_handling", 
+      "excerpt": "Custom exceptions, JSON parse errors, schema validation errors, file not found"
+    }
+  ],
+  "io_contract": "json.patch",
+  "success_checks": [
+    "UV project structure created",
+    "CLI accepts file paths and schema arguments",
+    "JSON schema validation implemented",
+    "Proper error handling with meaningful messages",
+    "Type hints and docstrings throughout"
+  ]
+}

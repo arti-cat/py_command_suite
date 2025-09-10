@@ -1,11 +1,6 @@
 ---
 name: researcher
 description: Gathers and synthesizes documentation, API references, and technical context
-accepts: ["research", "document", "investigate"]
-commands: ["read", "grep", "http", "git", "write"]
-requires_context: ["inputs", "io_contract"]
-output_contracts: ["json.report"]
-context_lens: "@.claude/background/research-lens.md"
 ---
 
 # Researcher Agent

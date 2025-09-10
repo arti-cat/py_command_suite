@@ -1,25 +1,20 @@
 {
   "hooks": {
-    "PreStartup": [
+    "SessionStart": [
       {
         "matcher": ".*",
         "hooks": [
           {
-            "type": "fail_if_file_exists",
-            "path": "mcp.json",
-            "message": "Avoid default MCP preload; use explicit per-task MCP config following R&D Framework principles."
+            "type": "command",
+            "command": "if [ -f mcp.json ]; then echo 'ERROR: Avoid default MCP preload; use explicit per-task MCP config following R&D Framework principles.' >&2 && exit 1; fi"
           },
           {
-            "type": "fail_if_large_file",
-            "path": ".claude/CLAUDE.md",
-            "max_tokens_estimate": 1200,
-            "message": "CLAUDE.md too large. Follow R&D Framework: use /prime commands for context loading instead."
+            "type": "command", 
+            "command": "if [ -f .claude/CLAUDE.md ]; then size=$(wc -w < .claude/CLAUDE.md 2>/dev/null || echo 0); if [ $size -gt 800 ]; then echo 'ERROR: CLAUDE.md too large (~'$size' words). Follow R&D Framework: use /prime commands for context loading instead.' >&2 && exit 1; fi; fi"
           },
           {
-            "type": "fail_if_large_file", 
-            "path": "CLAUDE.md",
-            "max_tokens_estimate": 1200,
-            "message": "CLAUDE.md too large. Follow R&D Framework: use /prime commands for context loading instead."
+            "type": "command",
+            "command": "if [ -f CLAUDE.md ]; then size=$(wc -w < CLAUDE.md 2>/dev/null || echo 0); if [ $size -gt 800 ]; then echo 'ERROR: CLAUDE.md too large (~'$size' words). Follow R&D Framework: use /prime commands for context loading instead.' >&2 && exit 1; fi; fi"
           }
         ]
       }
@@ -29,29 +24,20 @@
         "matcher": "Bash",
         "hooks": [
           {
-            "type": "deny_if_command_matches",
-            "patterns": [
-              "curl .*",
-              "wget .*", 
-              "rm -rf .*",
-              "sudo .*",
-              "docker .*",
-              "apt .*",
-              "brew .*",
-              "pip install .*",
-              "npm install -g .*"
-            ],
-            "message": "Disallowed command. Use UV for Python deps and project-local tools following R&D Framework safety principles."
+            "type": "command",
+            "command": "cmd=$(echo '$1' | jq -r '.tool_input.command // \"\"'); if echo \"$cmd\" | grep -qE '^(curl |wget |rm -rf |sudo |docker |apt |brew |pip install |npm install -g )'; then echo 'ERROR: Disallowed command. Use UV for Python deps and project-local tools following R&D Framework safety principles.' >&2 && exit 1; fi"
           }
         ]
       }
     ],
-    "PostWrite": [
+    "PostToolUse": [
       {
-        "matcher": "\\.py$",
+        "matcher": "Edit|MultiEdit|Write",
         "hooks": [
-          { "type": "bash", "command": "uvx ruff format ${FILE}" },
-          { "type": "bash", "command": "python -m compileall -q ${FILE}" }
+          {
+            "type": "command",
+            "command": "file_path=$(echo '$1' | jq -r '.tool_input.file_path // \"\"'); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -q '\\.py$'; then uvx ruff format \"$file_path\" 2>/dev/null || true; python -m compileall -q \"$file_path\" 2>/dev/null || true; fi"
+          }
         ]
       }
     ]

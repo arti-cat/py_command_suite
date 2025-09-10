@@ -1,0 +1,66 @@
+{
+  "tasks": [
+    {
+      "id": "research-cli-requirements",
+      "objective": "Research and define technical approach for Python CLI tool with JSON schema validation",
+      "agent": "researcher",
+      "io_contract": "json.report",
+      "acceptance_criteria": [
+        "CLI framework recommendation (click vs argparse vs typer) with rationale",
+        "JSON schema validation library selection (jsonschema vs cerberus)",
+        "Error handling patterns and user experience design defined",
+        "Testing strategy with coverage targets specified",
+        "UV project structure and dependency management approach confirmed"
+      ],
+      "context_pack": ".claude/context-bundles/research-cli-requirements.json"
+    },
+    {
+      "id": "implement-cli-core", 
+      "objective": "Implement core CLI functionality with UV project structure and JSON validation",
+      "agent": "coder",
+      "io_contract": "json.patch",
+      "acceptance_criteria": [
+        "UV project initialized with proper pyproject.toml configuration",
+        "CLI accepts file paths and optional schema file arguments",
+        "JSON file parsing with comprehensive error handling",
+        "Schema validation implementation with clear error messages",
+        "Modular code structure with single responsibility functions",
+        "Full type hints and docstring documentation"
+      ],
+      "context_pack": ".claude/context-bundles/implement-cli-core.json"
+    },
+    {
+      "id": "implement-comprehensive-tests",
+      "objective": "Create comprehensive test suite covering all functionality and edge cases",
+      "agent": "coder", 
+      "io_contract": "json.patch",
+      "acceptance_criteria": [
+        "Unit tests for all validation and utility functions",
+        "CLI integration tests using click.testing.CliRunner",
+        "Error condition testing (malformed JSON, invalid schemas, missing files)",
+        "Edge case coverage (empty files, large files, complex nested schemas)",
+        "Test coverage above 95% with pytest-cov integration",
+        "UV test command configured and all tests passing"
+      ],
+      "context_pack": ".claude/context-bundles/implement-comprehensive-tests.json"
+    },
+    {
+      "id": "review-implementation-quality",
+      "objective": "Conduct comprehensive quality review for security, performance, and maintainability",
+      "agent": "reviewer",
+      "io_contract": "json.review", 
+      "acceptance_criteria": [
+        "Code style and formatting compliance verified with ruff",
+        "Type safety confirmed with mypy static analysis",
+        "Security assessment completed (input validation, resource limits)",
+        "Performance analysis for large file handling",
+        "Documentation completeness and accuracy verified",
+        "Error handling robustness and user experience evaluated"
+      ],
+      "context_pack": ".claude/context-bundles/review-implementation-quality.json"
+    }
+  ],
+  "rationale": "This plan follows R&D Framework principles by breaking the complex goal into focused, single-responsibility tasks. The researcher establishes technical foundations, the coder implements core functionality and tests separately for maintainability, and the reviewer ensures quality standards. Each task has minimal context (under 6000 tokens) and clear success criteria. The sequential dependency structure ensures each agent has exactly what they need from previous tasks while maintaining strict separation of concerns.",
+  "estimated_tokens": 24000,
+  "estimated_minutes": 45
+}

@@ -5,21 +5,19 @@
         "matcher": "Read|Grep|Write|Bash",
         "hooks": [
           {
-            "type": "append_file",
-            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
-            "template": "- {{TOOL}} {{tool_input | safe_truncate:80}}\n"
+            "type": "command",
+            "command": "mkdir -p .claude/context-bundles; session_id=$(echo '$1' | jq -r '.session_id // \"unknown\"'); tool_name=$(echo '$1' | jq -r '.tool_name // \"unknown\"'); tool_input=$(echo '$1' | jq -r '.tool_input // {} | tostring' | head -c 100); bundle_file=\".claude/context-bundles/session-$(date +%Y%m%d_%H)-${session_id}.md\"; echo \"- **${tool_name}**: ${tool_input}\" >> \"$bundle_file\""
           }
         ]
       }
     ],
-    "PostPrompt": [
+    "UserPromptSubmit": [
       {
         "matcher": ".*",
         "hooks": [
           {
-            "type": "append_file", 
-            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
-            "template": "\n## {{timestamp}}\n**User**: {{user_prompt | safe_truncate:200}}\n\n"
+            "type": "command",
+            "command": "mkdir -p .claude/context-bundles; session_id=$(echo '$1' | jq -r '.session_id // \"unknown\"'); user_prompt=$(echo '$1' | jq -r '.user_prompt // \"\"' | head -c 200); bundle_file=\".claude/context-bundles/session-$(date +%Y%m%d_%H)-${session_id}.md\"; echo -e \"\\n## $(date '+%H:%M:%S')\\n**User**: ${user_prompt}\\n\" >> \"$bundle_file\""
           }
         ]
       }

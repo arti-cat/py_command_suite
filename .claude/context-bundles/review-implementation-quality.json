@@ -1,0 +1,30 @@
+{
+  "objective": "Review implementation for code quality, security, and performance",
+  "inputs": ["Complete CLI implementation", "Test suite"],
+  "constraints": ["Security best practices", "Performance considerations", "Maintainability"],
+  "doc_snippets": [
+    {
+      "tool": "ruff",
+      "version": "0.1.0",
+      "excerpt": "Python linter - code style, unused imports, complexity checks"
+    },
+    {
+      "tool": "mypy", 
+      "version": "1.6.0",
+      "excerpt": "Static type checker - type safety, gradual typing"
+    },
+    {
+      "pattern": "security_review",
+      "excerpt": "File path validation, input sanitization, resource limits"
+    }
+  ],
+  "io_contract": "json.review",
+  "success_checks": [
+    "Code style and formatting compliance",
+    "Type safety verification",
+    "Security vulnerability assessment",
+    "Performance bottleneck identification", 
+    "Documentation completeness review",
+    "Error handling robustness check"
+  ]
+}

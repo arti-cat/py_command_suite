@@ -1,11 +1,6 @@
 ---
 name: reviewer
 description: Conducts thorough code reviews focusing on security, performance, and maintainability
-accepts: ["review", "audit", "analyze"]
-commands: ["read", "grep", "git", "bash"]
-requires_context: ["inputs", "io_contract"]
-output_contracts: ["json.review", "json.report"]
-context_lens: "@.claude/background/quality-lens.md"
 ---
 
 # Reviewer Agent

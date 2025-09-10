@@ -1,0 +1,30 @@
+{
+  "objective": "Research Python CLI and JSON schema validation best practices",
+  "inputs": ["CLI tool requirements", "JSON schema validation needs"],
+  "constraints": ["Use modern Python (3.8+)", "UV package manager", "Industry standards"],
+  "doc_snippets": [
+    {
+      "library": "click",
+      "version": "8.1.7",
+      "excerpt": "Python CLI library - command decorators, argument parsing, error handling"
+    },
+    {
+      "library": "jsonschema", 
+      "version": "4.20.0",
+      "excerpt": "JSON Schema validation library - Draft 7/2020-12 support, custom validators"
+    },
+    {
+      "library": "pathlib",
+      "version": "stdlib",
+      "excerpt": "Modern path handling - Path objects, exists(), resolve(), iterdir()"
+    }
+  ],
+  "io_contract": "json.report",
+  "success_checks": [
+    "CLI library recommendation with rationale",
+    "JSON schema validation approach defined", 
+    "Error handling patterns identified",
+    "Testing strategy outlined",
+    "UV integration confirmed"
+  ]
+}

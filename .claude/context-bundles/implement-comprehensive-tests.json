@@ -1,0 +1,29 @@
+{
+  "objective": "Create comprehensive test suite for CLI tool",
+  "inputs": ["Implemented CLI core", "Error handling patterns"],
+  "constraints": ["pytest framework", "100% code coverage target", "UV test integration"],
+  "doc_snippets": [
+    {
+      "library": "pytest", 
+      "version": "7.4.0",
+      "excerpt": "Test framework - fixtures, parametrize, tmpdir, click.testing.CliRunner"
+    },
+    {
+      "library": "pytest-cov",
+      "version": "4.1.0", 
+      "excerpt": "Coverage reporting - --cov flag, coverage thresholds"
+    },
+    {
+      "pattern": "cli_testing",
+      "excerpt": "CliRunner.invoke(), result.exit_code, result.output, isolated filesystem"
+    }
+  ],
+  "io_contract": "json.patch",
+  "success_checks": [
+    "Unit tests for all validation functions",
+    "CLI integration tests with CliRunner",
+    "Error condition testing (invalid JSON, missing files, bad schemas)",
+    "Edge case coverage (empty files, large files, complex schemas)",
+    "UV test command configured and passing"
+  ]
+}
