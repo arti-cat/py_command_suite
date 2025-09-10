@@ -15,8 +15,7 @@
 - `.claude/agents/` - Specialized subagents for delegation
 - `.claude/commands/` - Context priming and development commands  
 - `.claude/hooks/` - Automation and guardrails
-- `agents/context-bundles/` - Session replay data
-- `agents/background/` - Background task reports
+
 
 ## Quality Gates
 - All Python files: `uvx ruff format` + syntax validation on write

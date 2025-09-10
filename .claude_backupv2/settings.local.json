@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import json, sys, os; data = json.load(sys.stdin); file_path = data.get('tool_input', {}).get('file_path', ''); safe_extensions = ['.md', '.mdx', '.txt', '.rst', '.toml', '.json', '.py', '.yaml', '.yml']; safe_files = ['readme', 'license', '.gitignore']; sensitive_patterns = ['.env', '.key', '.pem', '.crt', 'secret', 'credential']; basename = os.path.basename(file_path).lower(); ext = os.path.splitext(file_path)[1].lower(); is_sensitive = any(p in file_path.lower() for p in sensitive_patterns); is_safe_ext = ext in safe_extensions; is_safe_file = any(p in basename for p in safe_files); should_approve = (is_safe_ext or is_safe_file) and not is_sensitive; print(json.dumps({'decision': 'approve', 'reason': 'Safe documentation/config file', 'suppressOutput': True}) if should_approve else '')\"",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import json, sys, os, datetime; data = json.load(sys.stdin); session_id = data.get('session_id', 'unknown'); timestamp = datetime.datetime.utcnow().isoformat() + 'Z'; tool_name = data.get('tool_name', ''); tool_input = data.get('tool_input', {}); log_entry = {'timestamp': timestamp, 'session_id': session_id, 'tool_name': tool_name, 'tool_input': tool_input}; os.makedirs('agents/context-bundles', exist_ok=True); log_file = f'agents/context-bundles/session-{session_id}.jsonl'; with open(log_file, 'a') as f: f.write(json.dumps(log_entry) + '\\n')\"",
+            "timeout": 3000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import json, sys, subprocess, os; data = json.load(sys.stdin); tool_input = data.get('tool_input', {}); file_path = tool_input.get('file_path', ''); if file_path and file_path.endswith(('.py', '.pyi')): print(f'Auto-formatting Python file: {file_path}'); result = subprocess.run(['uvx', 'ruff', 'format', file_path], capture_output=True, text=True); print(f'✅ Formatted: {file_path}' if result.returncode == 0 else f'⚠️ Format failed: {result.stderr}')\"",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
+  }
+}
