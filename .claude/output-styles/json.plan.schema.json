@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema/json.plan.schema.json",
+  "title": "json.plan",
+  "description": "Planning output contract for orchestrator agents",
+  "type": "object",
+  "required": ["tasks", "rationale"],
+  "properties": {
+    "tasks": {
+      "type": "array",
+      "description": "List of tasks to be executed",
+      "items": {
+        "type": "object",
+        "required": ["id", "objective", "agent", "io_contract", "acceptance_criteria"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique task identifier"
+          },
+          "objective": {
+            "type": "string",
+            "description": "Clear description of what needs to be accomplished"
+          },
+          "agent": {
+            "type": "string",
+            "description": "Which agent should handle this task",
+            "enum": ["orchestrator", "coder", "reviewer", "researcher"]
+          },
+          "io_contract": {
+            "type": "string",
+            "description": "Expected output format",
+            "enum": ["json.plan", "json.patch", "json.review", "json.report"]
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "description": "Conditions that must be met for task completion",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "context_pack": {
+            "type": "string",
+            "description": "Path to context pack file for this task"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Explanation of the overall approach and task breakdown"
+    },
+    "estimated_tokens": {
+      "type": "number",
+      "description": "Estimated total token consumption"
+    },
+    "estimated_minutes": {
+      "type": "number",
+      "description": "Estimated total execution time"
+    }
+  },
+  "additionalProperties": false
+}

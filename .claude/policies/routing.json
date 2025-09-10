@@ -1,0 +1,76 @@
+{
+  "task_routes": {
+    "plan": "orchestrator",
+    "delegate": "orchestrator", 
+    "scaffold": "orchestrator",
+    "research": "researcher",
+    "document": "researcher",
+    "investigate": "researcher",
+    "coding": "coder",
+    "implement": "coder",
+    "refactor": "coder",
+    "migrate": "coder",
+    "review": "reviewer",
+    "audit": "reviewer",
+    "analyze": "reviewer"
+  },
+  "fallback_routes": {
+    "unknown": "orchestrator",
+    "complex": "orchestrator",
+    "multi_step": "orchestrator"
+  },
+  "agent_capabilities": {
+    "orchestrator": {
+      "specializes_in": ["planning", "coordination", "delegation"],
+      "output_formats": ["json.plan", "json.report"],
+      "context_management": "meta",
+      "delegation_allowed": true
+    },
+    "coder": {
+      "specializes_in": ["implementation", "testing", "refactoring"],
+      "output_formats": ["json.patch", "json.report"],
+      "context_management": "focused",
+      "delegation_allowed": false
+    },
+    "reviewer": {
+      "specializes_in": ["quality_assurance", "security", "performance"],
+      "output_formats": ["json.review", "json.report"],
+      "context_management": "analytical",
+      "delegation_allowed": false
+    },
+    "researcher": {
+      "specializes_in": ["documentation", "investigation", "context_building"],
+      "output_formats": ["json.report"],
+      "context_management": "comprehensive",
+      "delegation_allowed": false
+    }
+  },
+  "routing_rules": [
+    {
+      "condition": "task involves multiple agents",
+      "route_to": "orchestrator",
+      "reason": "orchestrator handles multi-agent coordination"
+    },
+    {
+      "condition": "task requires code implementation",
+      "route_to": "coder",
+      "reason": "coder specializes in implementation"
+    },
+    {
+      "condition": "task involves security or quality review",
+      "route_to": "reviewer", 
+      "reason": "reviewer provides quality assurance"
+    },
+    {
+      "condition": "task requires external information gathering",
+      "route_to": "researcher",
+      "reason": "researcher specializes in information synthesis"
+    }
+  ],
+  "escalation_paths": {
+    "coder_blocked": "orchestrator",
+    "reviewer_blocked": "orchestrator", 
+    "researcher_blocked": "orchestrator",
+    "orchestrator_blocked": "human"
+  }
+}

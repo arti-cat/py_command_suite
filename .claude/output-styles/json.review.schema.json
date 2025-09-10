@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema/json.review.schema.json",
+  "title": "json.review",
+  "description": "Code review output contract for reviewer agents",
+  "type": "object",
+  "required": ["blocked", "risks", "suggestions"],
+  "properties": {
+    "blocked": {
+      "type": "boolean",
+      "description": "Whether the review blocks proceeding"
+    },
+    "risks": {
+      "type": "array",
+      "description": "Security, performance, or architectural risks identified",
+      "items": {
+        "type": "object",
+        "required": ["severity", "description", "location"],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string",
+            "description": "File:line or general area"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["security", "performance", "architecture", "maintainability", "correctness"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "description": "Improvement recommendations",
+      "items": {
+        "type": "object",
+        "required": ["description", "location"],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "effort": {
+            "type": "string",
+            "enum": ["trivial", "small", "medium", "large"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "citations": {
+      "type": "array",
+      "description": "Standards, docs, or best practices referenced",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "summary": {
+      "type": "string",
+      "description": "Overall assessment and key points"
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": ["approved", "approved_with_suggestions", "changes_requested", "rejected"]
+    }
+  },
+  "additionalProperties": false
+}

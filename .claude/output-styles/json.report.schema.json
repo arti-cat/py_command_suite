@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema/json.report.schema.json",
+  "title": "json.report",
+  "description": "Session synthesis output contract for orchestrator agents",
+  "type": "object",
+  "required": ["session_id", "status", "completed_tasks"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Unique session identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["completed", "partial", "failed", "blocked"],
+      "description": "Overall session outcome"
+    },
+    "completed_tasks": {
+      "type": "array",
+      "description": "Successfully completed tasks",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "agent", "output"],
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "agent": {
+            "type": "string"
+          },
+          "output": {
+            "type": "string",
+            "description": "Path to task output file"
+          },
+          "duration_minutes": {
+            "type": "number"
+          },
+          "tokens_consumed": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "failed_tasks": {
+      "type": "array",
+      "description": "Tasks that failed to complete",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "error"],
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "retry_recommended": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "Key outputs produced",
+      "items": {
+        "type": "string",
+        "description": "Path to artifact file"
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "total_duration_minutes": {
+          "type": "number"
+        },
+        "total_tokens_consumed": {
+          "type": "number"
+        },
+        "agents_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "string",
+      "description": "Executive summary of what was accomplished"
+    },
+    "next_steps": {
+      "type": "array",
+      "description": "Recommended follow-up actions",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

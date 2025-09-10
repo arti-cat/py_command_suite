@@ -1,0 +1,79 @@
+{
+  "global_limits": {
+    "max_tokens_per_task": 6000,
+    "max_minutes_per_task": 10,
+    "max_bytes_per_output": 2000000,
+    "max_context_packs": 50,
+    "max_concurrent_tasks": 3
+  },
+  "agent_limits": {
+    "orchestrator": {
+      "max_tokens": 8000,
+      "max_minutes": 15,
+      "max_delegations": 10,
+      "max_context_pack_size": 1500,
+      "required_outputs": ["json.plan"]
+    },
+    "coder": {
+      "max_tokens": 6000,
+      "max_minutes": 20,
+      "max_files_modified": 5,
+      "max_test_files": 10,
+      "required_outputs": ["json.patch"]
+    },
+    "reviewer": {
+      "max_tokens": 4000,
+      "max_minutes": 10,
+      "max_files_reviewed": 10,
+      "max_suggestions": 20,
+      "required_outputs": ["json.review"]
+    },
+    "researcher": {
+      "max_tokens": 5000,
+      "max_minutes": 15,
+      "max_http_requests": 10,
+      "max_snippets": 15,
+      "required_outputs": ["json.report"]
+    }
+  },
+  "resource_quotas": {
+    "daily": {
+      "max_tokens": 100000,
+      "max_http_requests": 100,
+      "max_file_operations": 1000
+    },
+    "hourly": {
+      "max_tokens": 10000,
+      "max_http_requests": 20,
+      "max_file_operations": 100
+    }
+  },
+  "timeout_policies": {
+    "task_timeout": {
+      "warning_at_percent": 80,
+      "action": "prompt_for_extension"
+    },
+    "agent_timeout": {
+      "warning_at_percent": 90,
+      "action": "force_checkpoint_and_delegate"
+    },
+    "session_timeout": {
+      "max_minutes": 60,
+      "action": "force_save_and_exit"
+    }
+  },
+  "quality_gates": {
+    "min_test_coverage": 80,
+    "max_cyclomatic_complexity": 10,
+    "max_function_length_lines": 50,
+    "required_documentation": ["public_functions", "classes", "modules"],
+    "security_checks": ["no_hardcoded_secrets", "input_validation", "sql_injection"]
+  },
+  "context_budget": {
+    "reserved_for_system": 1000,
+    "reserved_for_schemas": 500,
+    "reserved_for_policies": 300,
+    "available_for_task": 4200,
+    "emergency_buffer": 200
+  }
+}

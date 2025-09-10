@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema/json.patch.schema.json",
+  "title": "json.patch",
+  "description": "Code implementation output contract for coder agents",
+  "type": "object",
+  "required": ["manifest", "diff"],
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "required": ["changed", "new"],
+      "properties": {
+        "changed": {
+          "type": "array",
+          "description": "List of modified files",
+          "items": {
+            "type": "string"
+          }
+        },
+        "new": {
+          "type": "array",
+          "description": "List of newly created files",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deleted": {
+          "type": "array",
+          "description": "List of deleted files",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "diff": {
+      "type": "string",
+      "description": "Unified diff showing all changes"
+    },
+    "tests_added": {
+      "type": "array",
+      "description": "List of test functions/cases added",
+      "items": {
+        "type": "string"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "description": "Documentation/API references used",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief description of what was implemented"
+    },
+    "breaking_changes": {
+      "type": "array",
+      "description": "Any breaking changes introduced",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
