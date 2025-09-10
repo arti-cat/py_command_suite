@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Read|Grep|Write|Bash",
+        "hooks": [
+          {
+            "type": "append_file",
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
+            "template": "- {{TOOL}} {{tool_input | safe_truncate:80}}\n"
+          }
+        ]
+      }
+    ],
+    "PostPrompt": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "append_file", 
+            "path": "agents/context-bundles/session-${DATE_HOUR}-${SESSION_ID}.md",
+            "template": "\n## {{timestamp}}\n**User**: {{user_prompt | safe_truncate:200}}\n\n"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "hooks": {
+    "PreStartup": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "fail_if_file_exists",
+            "path": "mcp.json",
+            "message": "Avoid default MCP preload; use explicit per-task MCP config following R&D Framework principles."
+          },
+          {
+            "type": "fail_if_large_file",
+            "path": ".claude/CLAUDE.md",
+            "max_tokens_estimate": 1200,
+            "message": "CLAUDE.md too large. Follow R&D Framework: use /prime commands for context loading instead."
+          },
+          {
+            "type": "fail_if_large_file", 
+            "path": "CLAUDE.md",
+            "max_tokens_estimate": 1200,
+            "message": "CLAUDE.md too large. Follow R&D Framework: use /prime commands for context loading instead."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "deny_if_command_matches",
+            "patterns": [
+              "curl .*",
+              "wget .*", 
+              "rm -rf .*",
+              "sudo .*",
+              "docker .*",
+              "apt .*",
+              "brew .*",
+              "pip install .*",
+              "npm install -g .*"
+            ],
+            "message": "Disallowed command. Use UV for Python deps and project-local tools following R&D Framework safety principles."
+          }
+        ]
+      }
+    ],
+    "PostWrite": [
+      {
+        "matcher": "\\.py$",
+        "hooks": [
+          { "type": "bash", "command": "uvx ruff format ${FILE}" },
+          { "type": "bash", "command": "python -m compileall -q ${FILE}" }
+        ]
+      }
+    ]
+  }
+}

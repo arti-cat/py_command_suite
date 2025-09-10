@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "warn_if_path_not_in",
+            "allowlist": [
+              "src/", 
+              "tests/", 
+              "README.md", 
+              "pyproject.toml", 
+              "CHANGELOG.md",
+              ".claude/",
+              "docs/"
+            ],
+            "message": "R&D Framework reminder: Stay focused on core project files during context priming."
+          },
+          {
+            "type": "deny_if_file_too_large",
+            "max_kb": 256,
+            "message": "Large file detected. Extract only necessary sections to follow R&D Framework context discipline."
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "suggest_delegation",
+            "message": "Consider delegating web scraping to doc-scraper agent to keep main context clean."
+          }
+        ]
+      }
+    ]
+  }
+}
