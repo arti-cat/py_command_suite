@@ -1,0 +1,37 @@
+{
+  "tasks": [
+    {
+      "id": "implement-cli-foundation",
+      "objective": "Implement JSON CLI tool using Click framework with schema validation capabilities",
+      "agent": "coder",
+      "io_contract": "json.patch",
+      "acceptance_criteria": [
+        "CLI accepts JSON file and optional schema arguments",
+        "jsonschema library validates JSON against schema",
+        "Clear error messages for validation failures",
+        "Type hints on all functions and methods",
+        "Docstrings following Google style",
+        "UV can install and run the package"
+      ],
+      "context_pack": ".claude/context-bundles/implement-cli-core.json"
+    },
+    {
+      "id": "review-implementation-security", 
+      "objective": "Review CLI implementation for security, error handling, and Python best practices",
+      "agent": "reviewer",
+      "io_contract": "json.review",
+      "acceptance_criteria": [
+        "No security vulnerabilities identified",
+        "Robust error handling throughout",
+        "Type safety verified with mypy-style analysis", 
+        "Code style compliance (PEP 8)",
+        "Performance bottlenecks identified and flagged",
+        "Documentation quality meets standards"
+      ],
+      "context_pack": ".claude/context-bundles/review-implementation-quality.json"
+    }
+  ],
+  "rationale": "This multi-agent delegation follows R&D Framework principles by breaking down the JSON CLI implementation into focused, single-responsibility tasks. The coder agent handles implementation with a context pack under 6000 tokens containing only essential CLI and validation requirements. The reviewer agent then performs security and quality analysis with a separate focused context pack. Each agent has clear success criteria and I/O contracts, demonstrating advanced delegation capabilities while maintaining context discipline.",
+  "estimated_tokens": 8000,
+  "estimated_minutes": 30
+}

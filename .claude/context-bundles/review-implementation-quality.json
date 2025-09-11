@@ -1,30 +1,72 @@
 {
-  "objective": "Review implementation for code quality, security, and performance",
-  "inputs": ["Complete CLI implementation", "Test suite"],
-  "constraints": ["Security best practices", "Performance considerations", "Maintainability"],
-  "doc_snippets": [
-    {
-      "tool": "ruff",
-      "version": "0.1.0",
-      "excerpt": "Python linter - code style, unused imports, complexity checks"
-    },
-    {
-      "tool": "mypy", 
-      "version": "1.6.0",
-      "excerpt": "Static type checker - type safety, gradual typing"
-    },
-    {
-      "pattern": "security_review",
-      "excerpt": "File path validation, input sanitization, resource limits"
-    }
+  "agent": "reviewer",
+  "task_id": "review-implementation-security",
+  "objective": "Review CLI implementation for security, error handling, and Python best practices",
+  "single_responsibility": "Quality assurance and security validation of CLI tool",
+  
+  "inputs": {
+    "implementation_files": ["json_cli/main.py", "json_cli/validator.py", "json_cli/exceptions.py"],
+    "dependencies": ["implement-cli-foundation task completion"],
+    "codebase_context": "JSON CLI tool with Click and jsonschema"
+  },
+  
+  "review_focus_areas": {
+    "security": [
+      "File path traversal vulnerabilities",
+      "Input sanitization for JSON files", 
+      "Resource consumption limits",
+      "Error information leakage"
+    ],
+    "error_handling": [
+      "Exception hierarchy design",
+      "User-friendly error messages",
+      "Graceful failure modes",
+      "Logging and debugging support"
+    ],
+    "code_quality": [
+      "Type hint coverage and accuracy",
+      "Docstring completeness and style",
+      "Function complexity and readability",
+      "Import organization and dependencies"
+    ]
+  },
+  
+  "security_checklist": {
+    "file_operations": "Validate file paths, check for path traversal, handle permissions",
+    "json_parsing": "Handle malformed JSON, large files, deep nesting",
+    "schema_validation": "Validate schema files, prevent schema injection",
+    "error_handling": "Avoid exposing system information in error messages"
+  },
+  
+  "python_best_practices": {
+    "typing": "All functions typed with proper return types",
+    "docstrings": "Google style docstrings for all public functions",
+    "imports": "Organized imports, no unused imports",
+    "complexity": "Functions under 20 lines, clear single responsibility"
+  },
+  
+  "performance_considerations": [
+    "Large JSON file handling efficiency",
+    "Memory usage with large schemas",
+    "CLI startup time optimization",
+    "Dependency loading performance"
   ],
-  "io_contract": "json.review",
-  "success_checks": [
-    "Code style and formatting compliance",
-    "Type safety verification",
-    "Security vulnerability assessment",
-    "Performance bottleneck identification", 
-    "Documentation completeness review",
-    "Error handling robustness check"
-  ]
+  
+  "success_criteria": [
+    "No security vulnerabilities identified",
+    "Robust error handling throughout",
+    "Type safety verified with mypy-style analysis",
+    "Code style compliance (PEP 8)",
+    "Performance bottlenecks identified and flagged",
+    "Documentation quality meets standards"
+  ],
+  
+  "io_contract": {
+    "format": "json.review",
+    "required_sections": ["security_assessment", "code_quality_review", "recommendations"],
+    "severity_levels": ["critical", "major", "minor", "informational"]
+  },
+  
+  "token_limit": 3500,
+  "focus_directive": "Focus on security and robustness - this is a CLI tool handling user files"
 }

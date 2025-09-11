@@ -1,0 +1,1 @@
+"""JSON CLI tests package."""

@@ -1,0 +1,81 @@
+{
+  "plan_id": "json-cli-multi-agent-implementation",
+  "objective": "Implement JSON CLI tool through focused multi-agent delegation",
+  "framework": "R&D Framework - Reduce context, Delegate effectively",
+  
+  "delegation_chain": [
+    {
+      "agent": "coder",
+      "task_id": "implement-cli-foundation", 
+      "sequence": 1,
+      "objective": "Implement CLI foundation using Click framework with JSON schema validation",
+      "context_pack": "implement-cli-core.json",
+      "success_criteria": [
+        "UV project structure established",
+        "Click CLI interface functional",
+        "JSON schema validation implemented", 
+        "Core error handling in place",
+        "Type hints throughout codebase"
+      ],
+      "output_contract": "json.patch",
+      "token_budget": 4500,
+      "time_estimate": "15-20 minutes"
+    },
+    {
+      "agent": "reviewer", 
+      "task_id": "review-implementation-security",
+      "sequence": 2,
+      "objective": "Review implementation for security, error handling, and Python best practices",
+      "context_pack": "review-implementation-quality.json",
+      "dependencies": ["implement-cli-foundation"],
+      "success_criteria": [
+        "Security vulnerabilities identified and addressed",
+        "Error handling robustness verified",
+        "Code style compliance confirmed",
+        "Type safety validated", 
+        "Performance bottlenecks identified"
+      ],
+      "output_contract": "json.review",
+      "token_budget": 3500,
+      "time_estimate": "10-15 minutes"
+    }
+  ],
+  
+  "context_engineering": {
+    "max_tokens_per_pack": 6000,
+    "focus_areas": ["CLI implementation", "schema validation", "security review"],
+    "excluded_context": ["general Python tutorials", "unrelated frameworks", "verbose documentation"]
+  },
+  
+  "orchestrator_responsibilities": {
+    "pre_delegation": [
+      "Verify context packs are under 6000 tokens",
+      "Ensure each agent has precisely what they need",
+      "Define clear I/O contracts"
+    ],
+    "during_execution": [
+      "Monitor task progress",
+      "Handle inter-agent communication",
+      "Escalate blockers to human"
+    ],
+    "post_completion": [
+      "Synthesize final report",
+      "Validate all success criteria met",
+      "Document artifacts created"
+    ]
+  },
+  
+  "risk_mitigation": {
+    "coder_failure": "Break down implementation into smaller focused tasks",
+    "reviewer_failure": "Provide additional context about specific review areas", 
+    "context_bloat": "Enforce 6000 token limit strictly",
+    "agent_confusion": "Clarify single responsibility per task"
+  },
+  
+  "expected_artifacts": [
+    "Functional JSON CLI tool with UV project structure",
+    "Comprehensive test suite",
+    "Security review report with recommendations",
+    "Performance analysis and optimization suggestions"
+  ]
+}

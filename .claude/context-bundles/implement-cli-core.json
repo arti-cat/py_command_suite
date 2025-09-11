@@ -1,28 +1,56 @@
 {
-  "objective": "Implement CLI tool core functionality with UV project structure",
-  "inputs": ["Research findings", "JSON schema validation requirements"],
-  "constraints": ["UV package manager", "Single responsibility functions", "Type hints", "Docstrings"],
-  "doc_snippets": [
-    {
-      "tool": "uv",
-      "version": "latest",
-      "excerpt": "uv init --name json-validator --python 3.11"
-    },
-    {
-      "pattern": "cli_structure",
-      "excerpt": "main.py -> click commands, validate.py -> schema logic, __init__.py -> exports"
-    },
-    {
-      "pattern": "error_handling", 
-      "excerpt": "Custom exceptions, JSON parse errors, schema validation errors, file not found"
-    }
+  "agent": "coder",
+  "task_id": "implement-cli-foundation",
+  "objective": "Implement JSON CLI tool using Click framework with schema validation capabilities",
+  "single_responsibility": "Build functional CLI foundation with validation core",
+  
+  "inputs": {
+    "project_root": "/home/bch/dev/tools/py_command_suite",
+    "existing_structure": "UV project already initialized",
+    "requirements": ["Click CLI interface", "JSON schema validation", "Error handling"]
+  },
+  
+  "constraints": {
+    "package_manager": "UV only - no pip, poetry, conda",
+    "framework": "Click for CLI (not argparse or typer)",
+    "validation": "jsonschema library for validation",
+    "structure": "Single responsibility principle",
+    "quality": "Type hints, docstrings, error handling"
+  },
+  
+  "implementation_specs": {
+    "entry_point": "json_cli/main.py with Click decorators",
+    "validation_module": "json_cli/validator.py with schema logic",
+    "error_handling": "Custom exceptions inheriting from base Exception",
+    "file_structure": [
+      "json_cli/__init__.py - exports and version",
+      "json_cli/main.py - Click CLI commands", 
+      "json_cli/validator.py - JSON validation logic",
+      "json_cli/exceptions.py - custom error classes"
+    ]
+  },
+  
+  "code_patterns": {
+    "click_basic": "@click.command()\n@click.argument('json_file', type=click.Path(exists=True))\n@click.option('--schema', type=click.Path(exists=True))",
+    "validation_core": "import jsonschema\nfrom jsonschema import validate, ValidationError",
+    "error_pattern": "class JSONValidationError(Exception):\n    \"\"\"Raised when JSON validation fails\"\"\"\n    pass"
+  },
+  
+  "success_criteria": [
+    "CLI accepts JSON file and optional schema arguments",
+    "jsonschema library validates JSON against schema", 
+    "Clear error messages for validation failures",
+    "Type hints on all functions and methods",
+    "Docstrings following Google style",
+    "UV can install and run the package"
   ],
-  "io_contract": "json.patch",
-  "success_checks": [
-    "UV project structure created",
-    "CLI accepts file paths and schema arguments",
-    "JSON schema validation implemented",
-    "Proper error handling with meaningful messages",
-    "Type hints and docstrings throughout"
-  ]
+  
+  "io_contract": {
+    "format": "json.patch",
+    "required_fields": ["files_created", "implementation_notes", "next_steps"],
+    "completion_signal": "CLI tool functional and testable"
+  },
+  
+  "token_limit": 4500,
+  "focus_directive": "Implement only the core CLI and validation - no tests, no docs, no extras"
 }
