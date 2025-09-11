@@ -1,0 +1,28 @@
+{
+  "objective": "Audit and validate comprehensive error handling implementation",
+  "agent_type": "reviewer",
+  "inputs": {
+    "implementation_output": "error-implementation-pack.json deliverables",
+    "original_code": "baseline JSON CLI tool code",
+    "research_context": "error-research-pack.json findings"
+  },
+  "constraints": {
+    "max_tokens": 1000,
+    "review_criteria": ["security", "maintainability", "user_experience", "performance"],
+    "compliance_check": "python standards, project conventions"
+  },
+  "doc_snippets": {
+    "review_checklist": "error propagation, resource cleanup, edge cases, test coverage"
+  },
+  "io_contract": {
+    "output_format": "json.review_report",
+    "required_fields": ["approval_status", "critical_issues", "recommendations", "test_results"],
+    "max_response_tokens": 600
+  },
+  "success_checks": [
+    "Security vulnerabilities identified",
+    "Code quality standards met",
+    "Error handling completeness verified",
+    "Performance impact assessed"
+  ]
+}

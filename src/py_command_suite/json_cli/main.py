@@ -12,6 +12,7 @@ from .exceptions import (
     JSONValidationError,
     SchemaError,
     FileAccessError,
+    FileSizeError,
 )
 from .validator import validate_json_file
 
@@ -27,9 +28,11 @@ from .validator import validate_json_file
     help="JSON schema file to validate against",
 )
 @click.option("--verbose", "-v", is_flag=True, help="Show detailed validation errors")
+@click.option("--max-size", type=int, default=100, help="Maximum file size in MB (default: 100)")
+@click.option("--no-size-check", is_flag=True, help="Skip file size validation")
 @click.version_option(version="0.1.0", prog_name="json-validate")
 def validate_json(
-    json_file: Path, schema: Optional[Path] = None, verbose: bool = False
+    json_file: Path, schema: Optional[Path] = None, verbose: bool = False, max_size: int = 100, no_size_check: bool = False
 ) -> None:
     """Validate JSON files against optional schemas.
 
@@ -77,6 +80,16 @@ def validate_json(
 
     except FileAccessError as e:
         click.echo(click.style("✗ File Error: ", fg="red") + str(e), err=True)
+        if hasattr(e, 'suggestion') and e.suggestion:
+            click.echo(click.style("💡 Suggestion: ", fg="yellow") + e.suggestion, err=True)
+        sys.exit(1)
+
+    except FileSizeError as e:
+        click.echo(click.style("✗ File Size Error: ", fg="red") + str(e), err=True)
+        if verbose and e.file_size and e.limit:
+            click.echo(f"   File size: {e.file_size / 1024 / 1024:.1f}MB", err=True)
+            click.echo(f"   Size limit: {e.limit / 1024 / 1024:.1f}MB", err=True)
+            click.echo("   Use --no-size-check to bypass this limit", err=True)
         sys.exit(1)
 
     except JSONCliError as e:

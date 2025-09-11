@@ -1,0 +1,33 @@
+{
+  "objective": "Implement comprehensive error handling improvements for JSON CLI tool",
+  "agent_type": "coder", 
+  "inputs": {
+    "research_findings": "error-research-pack.json output",
+    "target_files": [
+      "/home/bch/dev/tools/py_command_suite/src/py_command_suite/json_cli/main.py",
+      "/home/bch/dev/tools/py_command_suite/src/py_command_suite/json_cli/exceptions.py"
+    ],
+    "implementation_scope": "error handling, user feedback, graceful degradation"
+  },
+  "constraints": {
+    "max_tokens": 2000,
+    "preserve_existing_api": true,
+    "maintain_test_compatibility": true,
+    "follow_python_conventions": true
+  },
+  "doc_snippets": {
+    "click_patterns": "click.echo with style for colored output",
+    "exception_hierarchy": "Custom JSONCliError base class with specialized subclasses"
+  },
+  "io_contract": {
+    "output_format": "code_changes",
+    "required_deliverables": ["enhanced_exceptions", "improved_main_py", "test_updates"],
+    "max_response_tokens": 1200
+  },
+  "success_checks": [
+    "All existing tests pass",
+    "New error scenarios handled gracefully", 
+    "User experience significantly improved",
+    "Code follows project conventions"
+  ]
+}

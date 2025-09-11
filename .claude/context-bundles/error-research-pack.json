@@ -1,0 +1,31 @@
+{
+  "objective": "Research comprehensive error patterns for JSON CLI tool enhancement",
+  "agent_type": "researcher",
+  "inputs": {
+    "target_files": [
+      "/home/bch/dev/tools/py_command_suite/src/py_command_suite/json_cli/main.py",
+      "/home/bch/dev/tools/py_command_suite/src/py_command_suite/json_cli/exceptions.py",
+      "/home/bch/dev/tools/py_command_suite/src/py_command_suite/json_cli/validator.py"
+    ],
+    "focus_areas": ["error handling patterns", "exception hierarchy", "user experience gaps"]
+  },
+  "constraints": {
+    "max_tokens": 1500,
+    "time_budget": "5 minutes",
+    "research_depth": "medium"
+  },
+  "doc_snippets": {
+    "current_exceptions": "JSONCliError, JSONParseError, JSONValidationError, SchemaError, FileAccessError",
+    "error_handling": "Basic try-catch with click.echo error display and sys.exit(1)"
+  },
+  "io_contract": {
+    "output_format": "json.research_findings",
+    "required_fields": ["error_gaps", "improvement_areas", "priority_recommendations"],
+    "max_response_tokens": 800
+  },
+  "success_checks": [
+    "Identifies specific error handling gaps",
+    "Provides actionable improvement recommendations",
+    "Analyzes user experience impact"
+  ]
+}

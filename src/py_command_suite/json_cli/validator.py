@@ -12,10 +12,36 @@ from .exceptions import (
     JSONValidationError,
     SchemaError,
     FileAccessError,
+    FileSizeError,
 )
 
 
-def load_json_file(file_path: Path) -> Dict[str, Any]:
+def validate_file_size(file_path: Path, max_size_mb: int = 100) -> None:
+    """Validate file size before processing.
+    
+    Args:
+        file_path: Path to check
+        max_size_mb: Maximum file size in MB
+        
+    Raises:
+        FileSizeError: If file exceeds size limit
+    """
+    try:
+        file_size = file_path.stat().st_size
+        max_bytes = max_size_mb * 1024 * 1024
+        
+        if file_size > max_bytes:
+            raise FileSizeError(
+                f"File size ({file_size / 1024 / 1024:.1f}MB) exceeds limit ({max_size_mb}MB)",
+                str(file_path),
+                file_size,
+                max_bytes
+            )
+    except FileNotFoundError:
+        raise FileAccessError(f"File not found: {file_path}", str(file_path))
+
+
+def load_json_file(file_path: Path, validate_size: bool = True) -> Dict[str, Any]:
     """Load and parse a JSON file.
 
     Args:
@@ -28,20 +54,31 @@ def load_json_file(file_path: Path) -> Dict[str, Any]:
         FileAccessError: If file cannot be read
         JSONParseError: If JSON parsing fails
     """
+    # Validate file size if requested
+    if validate_size:
+        validate_file_size(file_path)
+    
     try:
         with file_path.open("r", encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
-        raise FileAccessError(f"File not found: {file_path}", str(file_path))
+        suggestion = "Check that the file path is correct and the file exists"
+        raise FileAccessError(f"File not found: {file_path}", str(file_path), suggestion)
     except PermissionError:
+        suggestion = "Check file permissions or run with appropriate privileges"
         raise FileAccessError(
-            f"Permission denied reading file: {file_path}", str(file_path)
+            f"Permission denied reading file: {file_path}", str(file_path), suggestion
         )
     except json.JSONDecodeError as e:
-        raise JSONParseError(
-            f"Invalid JSON in file {file_path}: {e.msg} at line {e.lineno}, column {e.colno}",
-            str(file_path),
-        )
+        # Provide helpful context and suggestions
+        context_lines = _get_error_context(file_path, e.lineno)
+        suggestion = _get_json_error_suggestion(e.msg)
+        error_msg = f"Invalid JSON in file {file_path}: {e.msg} at line {e.lineno}, column {e.colno}"
+        if context_lines:
+            error_msg += f"\nContext:\n{context_lines}"
+        if suggestion:
+            error_msg += f"\nSuggestion: {suggestion}"
+        raise JSONParseError(error_msg, str(file_path))
     except Exception as e:
         raise FileAccessError(
             f"Unexpected error reading file {file_path}: {e}", str(file_path)
@@ -106,6 +143,42 @@ def validate_json_against_schema(
         raise JSONValidationError(
             f"JSON validation failed: {e.message}", json_file_path, errors
         )
+
+
+def _get_error_context(file_path: Path, line_no: int, context_lines: int = 2) -> str:
+    """Get context lines around an error for better debugging."""
+    try:
+        with file_path.open("r", encoding="utf-8") as f:
+            lines = f.readlines()
+        
+        start = max(0, line_no - context_lines - 1)
+        end = min(len(lines), line_no + context_lines)
+        
+        context = []
+        for i in range(start, end):
+            marker = ">>>" if i + 1 == line_no else "   "
+            context.append(f"{marker} {i + 1:3d}: {lines[i].rstrip()}")
+        
+        return "\n".join(context)
+    except Exception:
+        return ""
+
+
+def _get_json_error_suggestion(error_msg: str) -> str:
+    """Provide helpful suggestions based on JSON error message."""
+    suggestions = {
+        "Expecting ',' delimiter": "Check for missing commas between object properties or array elements",
+        "Expecting ':' delimiter": "Check for missing colons between object keys and values", 
+        "Expecting property name": "Check for missing quotes around object property names",
+        "Unterminated string": "Check for missing closing quotes in string values",
+        "Extra data": "Check for extra characters after the JSON content"
+    }
+    
+    for pattern, suggestion in suggestions.items():
+        if pattern.lower() in error_msg.lower():
+            return suggestion
+    
+    return "Validate JSON syntax using a JSON formatter or validator"
 
 
 def validate_json_file(

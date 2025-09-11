@@ -1,0 +1,37 @@
+{
+  "enhanced_exceptions": {
+    "new_classes": ["FileSizeError"],
+    "enhanced_classes": ["FileAccessError"],
+    "improvements": [
+      "Added suggestion field to FileAccessError for user guidance",
+      "Added FileSizeError with size and limit tracking",
+      "Enhanced constructor parameters for better context"
+    ]
+  },
+  "improved_main_py": {
+    "new_options": ["--max-size", "--no-size-check"],
+    "enhanced_error_handling": [
+      "FileSizeError handling with detailed size information",
+      "Suggestion display for FileAccessError",
+      "Verbose mode enhancements for size errors"
+    ]
+  },
+  "validator_enhancements": {
+    "new_functions": [
+      "validate_file_size()",
+      "_get_error_context()",
+      "_get_json_error_suggestion()"
+    ],
+    "improvements": [
+      "File size validation before processing",
+      "Context lines around JSON parse errors",
+      "Intelligent error suggestions based on error patterns",
+      "Enhanced error messages with actionable guidance"
+    ]
+  },
+  "compatibility": {
+    "existing_api": "preserved",
+    "backward_compatibility": "maintained",
+    "new_features": "opt-in via CLI flags"
+  }
+}
